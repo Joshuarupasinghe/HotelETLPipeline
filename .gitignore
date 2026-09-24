@@ -1,0 +1,106 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging / build artifacts
+bin/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Inline documentation / Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.rruff_cache/
+
+# Testing and Coverage
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.hypothesis/
+.pytest_cache/
+
+
+# Local SQLite or SQLite backups if used for testing
+*.db
+*.sqlite3
+
+
+# Database dump files (PostgreSQL plain/custom text format backups)
+*.sql
+*.dump
+*.pgdump
+
+# AWS CLI local configurations or cached keys
+.aws/
+.elasticbeanstalk/
+
+# AWS SAM (Serverless Application Model) build artifacts
+.aws-sam/
+samconfig.toml
+
+# AWS CDK (Cloud Development Kit) outputs
+cdk.out/
+.cdk.staging/
+
+# Serverless Framework artifacts
+.serverless/
+
+# Database URLs, AWS secrets, or private keys
+.env
+.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.secret
+*.pem
+*.key
+
+# JetBrains (PyCharm)
+.idea/
+
+# Visual Studio Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Operating System Files
+.DS_Store
+Thumbs.db
