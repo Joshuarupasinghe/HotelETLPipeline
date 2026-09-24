@@ -1,19 +1,23 @@
 import psycopg2
-from sqlalchemy import create_engine
 from src.config import Config
+import logging
 
-def get_engine():
-    return create_engine(Config.DATABASE_URI)
+logger = logging.getLogger("etl_pipeline")
 
-def db_connection():
-    engine = get_engine()
-    
-    try:
-        with engine.connect() as connection:
-            print("Database connection established.")
-            return connection
-    
-    except Exception as e:
-        print(f"Error connecting to the database: {e}")
-        return None
-    
+def get_connection():
+    return psycopg2.connect(
+        host=Config.DB_HOST,
+        port=Config.DB_PORT,
+        dbname=Config.DB_NAME,
+        user=Config.DB_USER,
+        password=Config.DB_PASSWORD
+    )
+
+def init_db(schema_file_path: str):
+    logger.info("Initializing database schema...")
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            with open(schema_file_path, "r") as f:
+                cur.execute(f.read())
+        conn.commit()
+    logger.info("Database schema initialized successfully.")
