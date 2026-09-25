@@ -1,6 +1,8 @@
 import boto3
 import logging
 from botocore.exceptions import ClientError
+from boto3.s3.transfer import TransferConfig
+from botocore.config import Config as BotoConfig
 from src.config import Config
 
 logger = logging.getLogger("etl_pipeline")
@@ -23,9 +25,16 @@ class S3Client:
         if not self.bucket:
             logger.warning("S3 bucket name is not configured.")
             return False
+        
+        transfer_config = TransferConfig(
+            multipart_threshold=50 * 1024 * 1024, # Only use multipart if file > 50MB (default is 8MB)
+            max_concurrency=2,                    # Reduce threads (default is 10)
+            use_threads=True
+        )
+        
         try:
             logger.info(f"Uploading file {local_path} to S3 bucket.")
-            self.s3_client.upload_file(str(local_path), self.bucket, s3_key)
+            self.s3_client.upload_file(str(local_path), self.bucket, s3_key, Config=transfer_config)
             logger.info(f"File {local_path} uploaded to S3 bucket {self.bucket}.")
             return True
         except ClientError as e:
