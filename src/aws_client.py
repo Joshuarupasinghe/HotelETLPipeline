@@ -24,8 +24,9 @@ class S3Client:
             logger.warning("S3 bucket name is not configured.")
             return False
         try:
+            logger.info(f"Uploading file {local_path} to S3 bucket.")
             self.s3_client.upload_file(str(local_path), self.bucket, s3_key)
-            logger.info(f"File {local_path} uploaded to S3 bucket {self.bucket} with key {s3_key}.")
+            logger.info(f"File {local_path} uploaded to S3 bucket {self.bucket}.")
             return True
         except ClientError as e:
             logger.error(f"Failed to upload file {local_path} to S3: {e}")

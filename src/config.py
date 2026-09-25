@@ -22,6 +22,8 @@ class Config:
     DATABASE_URI = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
     # Paths
-    RAW_DATA_DIR = BASE_DIR / "data" / "raw"
-    REJECTED_DATA_DIR = BASE_DIR / "data" / "rejected"
-    RAW_CSV_NAME = "hotel_bookings_raw.csv"
+    DATA_DIR = BASE_DIR / "data"
+    RAW_DATA_PATH = DATA_DIR / "raw" / "hotel_bookings_raw.csv"
+    PROCESSED_DATA_PATH = DATA_DIR / "processed" / "hotel_bookings_cleaned.csv"
+    REJECTED_DATA_PATH = DATA_DIR / "rejected" / "rejected_records.csv"
+    LOG_DIR = BASE_DIR / "logs"
